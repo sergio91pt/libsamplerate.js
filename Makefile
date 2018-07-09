@@ -17,7 +17,6 @@ dist/libsamplerate.js: $(SAMPLERATE) src/wrapper.o src/pre.js src/post.js
 
 $(SAMPLERATE): $(SAMPLERATE).tar.gz
 	$(TAR) xzvf $@.tar.gz && \
-	patch -d $(SAMPLERATE) -p1 < src/disable-best-quality.patch && \
 	cd $@ && \
 	./autogen.sh && \
 	$(EMCONFIGURE) ./configure --disable-fftw CFLAGS="$(CFLAGS)" && \

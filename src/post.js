@@ -28,6 +28,7 @@ function Samplerate(args) {
   return this;
 };
 
+Samplerate.BEST_QUALITY = 0;
 Samplerate.MEDIUM_QUALITY = 1;
 Samplerate.FASTEST = 2;
 Samplerate.ZERO_ORDER_HOLD = 3;
