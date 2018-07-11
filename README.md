@@ -7,23 +7,27 @@ Conversion API
 ------------
 
 ```
-var resampler = new Samplerate({type: Samplerate.FASTEST});
+const SamplerateModule = require('libsamplerate')();
 
-var result = resampler.process({
-  data: buffer, // buffer is a Float32Aray or a Int16Array
-  ratio: 1.5,
-  last: false
+SamplerateModule.then(({ Samplerate }) => {
+    var resampler = new Samplerate({type: Samplerate.FASTEST});
+
+    var result = resampler.process({
+      data: buffer, // buffer is a Float32Aray or a Int16Array
+      ratio: 1.5,
+      last: false
+    });
+
+    var converted = result.data; // same type as buffer above
+    var used = result.used; // input samples effectively used
+
+    // Optional:
+    converter.setRatio(2.3);
+    converter.reset();
+
+    // Close:
+    resampler.close();
 });
-
-var converted = result.data; // same type as buffer above
-var used = result.used; // input samples effectively used
-
-// Optional:
-converter.setRatio(2.3);
-converter.reset();
-
-// Close:
-resampler.close();
 ```
 
 Does it work?

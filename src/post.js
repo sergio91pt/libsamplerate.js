@@ -1,7 +1,5 @@
 // libsamplerate function wrappers
 
-var isNode = typeof process === "object" && typeof require === "function";
-
 var float32Len = Module.HEAPF32.BYTES_PER_ELEMENT;
 var int32Len = Module.HEAP32.BYTES_PER_ELEMENT;
 var int16Len = Module.HEAP16.BYTES_PER_ELEMENT;
@@ -152,10 +150,6 @@ Samplerate.prototype.process = function (args) {
   return ret;
 };
 
-if (isNode) {
-  module.exports = Samplerate;
-}
-
 return Samplerate;
 
-}).call(context)})();
+})();
