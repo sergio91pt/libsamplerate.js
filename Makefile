@@ -1,10 +1,11 @@
 SAMPLERATE_VERSION:=7dcc9bb727dae4e2010cdc6ef7cda101b05509a4
 SAMPLERATE:=libsamplerate-$(SAMPLERATE_VERSION)
 
+ENVIRONMENT:=web
 EMCC:=emcc
 EXPORTED_FUNCTIONS:='["_src_strerror", "_src_new", "_src_delete", "_src_js_process", "_src_reset", "_src_set_ratio"]'
-CFLAGS:=-O2 -s ASM_JS=1 -s USE_TYPED_ARRAYS=2
-LINKFLAGS:=$(CFLAGS) -s EXPORTED_FUNCTIONS=$(EXPORTED_FUNCTIONS)
+CFLAGS:=-O2
+LINKFLAGS:=$(CFLAGS) -s EXPORTED_FUNCTIONS=$(EXPORTED_FUNCTIONS) --minify 0 -s MODULARIZE=1 -s ENVIRONMENT=$(ENVIRONMENT) -s EXPORT_NAME=SamplerateModule
 EMCONFIGURE:=emconfigure
 EMMAKE:=emmake
 SAMPLERATE_URL:="https://github.com/erikd/libsamplerate/archive/7dcc9bb727dae4e2010cdc6ef7cda101b05509a4.tar.gz"
@@ -35,4 +36,4 @@ src/wrapper.o: src/wrapper.c
 distclean: clean
 	$(RM) $(SAMPLERATE).tar.gz
 
-.PHONY: clean distclean
+.PHONY: clean distclean dist/libsamplerate.js

@@ -1,3 +1,4 @@
 libsamplerate-*
 *.o
 .*.sw*
+dist/
