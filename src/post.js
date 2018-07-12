@@ -8,7 +8,7 @@ var int16Len = Module.HEAP16.BYTES_PER_ELEMENT;
 var int8Len = Module.HEAP8.BYTES_PER_ELEMENT;
 
 function Samplerate(args) {
-  var type = args.type || Samplerate.LINEAR;
+  var type = Number.isInteger(args.type) ? args.type : Samplerate.LINEAR;
   var _err = _malloc(int16Len);
   var err;
 
